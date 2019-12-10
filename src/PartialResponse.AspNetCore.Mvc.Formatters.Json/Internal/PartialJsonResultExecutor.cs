@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
@@ -111,10 +110,8 @@ namespace PartialResponse.AspNetCore.Mvc.Formatters.Json.Internal
                 return Task.CompletedTask;
             }
 
-            string resolvedContentType = null;
-            Encoding resolvedContentTypeEncoding = null;
-
-            ResponseContentTypeHelper.ResolveContentTypeAndEncoding(result.ContentType, response.ContentType, DefaultContentType, out resolvedContentType, out resolvedContentTypeEncoding);
+            Encoding resolvedContentTypeEncoding = Encoding.UTF8;
+            string resolvedContentType = "application/json; charset=utf-8";
 
             response.ContentType = resolvedContentType;
 
